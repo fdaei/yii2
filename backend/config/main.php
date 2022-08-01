@@ -38,6 +38,19 @@ return [
                 ],
             ],
         ],
+        'mailer'=>[
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport'=>false,
+            'transport' => [
+                'class'=>'Swift_SmtpTransport',
+                'host'=>'smtp.mail.ir',
+                'username'=>'firoozehdaei@mail.ir',
+                'password'=>'13791376#fF',
+                'port' => '587' ,
+                'encryption' => 'tls'
+            ],
+
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

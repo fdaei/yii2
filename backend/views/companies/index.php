@@ -1,10 +1,13 @@
 <?php
 
+use dosamigos\datepicker\DatePicker;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use backend\models\Companies;
+use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CompaniesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -21,19 +24,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            // 'company_id',
             'company_name',
             'company_email:email',
             'company_address',
-            'company_created_data',
-            //'company_status',
+             [
+                'attribute'=>'company_created_data',
+                'value'=>'company_created_data',
+                'format'=>'raw',
+                'filter'=>DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'company_created_data',
+                    'template' => '{addon}{input}',
+                    'clientOptions' => [
+                        'autoclose' => true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ])
+             ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Companies $model, $key, $index, $column) {
@@ -42,6 +55,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
-
+    <?php Pjax::end();  ?>
 </div>
