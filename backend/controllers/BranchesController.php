@@ -68,7 +68,6 @@ class BranchesController extends Controller
     public function actionCreate()
     {
         $model = new Branches();
-
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'branch_id' => $model->branch_id]);
@@ -77,7 +76,7 @@ class BranchesController extends Controller
             $model->loadDefaultValues();
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }

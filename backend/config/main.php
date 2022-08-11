@@ -43,9 +43,9 @@ return [
             'useFileTransport'=>false,
             'transport' => [
                 'class'=>'Swift_SmtpTransport',
-                'host'=>'smtp.mail.ir',
-                'username'=>'firoozehdaei@mail.ir',
-                'password'=>'13791376#fF',
+                'host'=>'smtp.gmail.com',
+                'username'=>'nasimdaei8@gmail.com',
+                'password'=>'398918b0596a5c1e22872fb751ece3d1aa9bacf6',
                 'port' => '587' ,
                 'encryption' => 'tls'
             ],

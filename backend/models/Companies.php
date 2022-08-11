@@ -19,6 +19,7 @@ use Yii;
  */
 class Companies extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * {@inheritdoc}
      */
@@ -35,6 +36,7 @@ class Companies extends \yii\db\ActiveRecord
         return [
             [['company_name', 'company_email', 'company_address', 'company_created_data', 'company_status'], 'required'],
             [['company_created_data'], 'safe'],
+            ['company_created_data','check'],
             [['company_status'], 'string'],
             [['file'],'file'],
             [['company_name','logo','company_email'], 'string', 'max' => 100],
@@ -42,6 +44,13 @@ class Companies extends \yii\db\ActiveRecord
         ];
     }
 
+    public function check($attribute,$params){
+        $today = date('Y-m-d');
+        $selectDate = date($this->company_created_data);
+        if($selectDate > $today){
+            $this->addError($attribute,'Company Created Data Must be smailer');
+        }
+    }
     /**
      * {@inheritdoc}
      */
@@ -55,7 +64,6 @@ class Companies extends \yii\db\ActiveRecord
             'company_created_data' => 'Company Created Data',
             'company_status' => 'Company Status',
             'file'=>'logo',
-
         ];
     }
 

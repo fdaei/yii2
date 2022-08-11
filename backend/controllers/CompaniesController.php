@@ -2,12 +2,17 @@
 
 namespace backend\controllers;
 
+use backend\models\Branches;
 use backend\models\Companies;
 use backend\models\CompaniesSearch;
+use Yii;
+use yii\helpers\Console;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
 
 /**
  * CompaniesController implements the CRUD actions for Companies model.
@@ -69,25 +74,23 @@ class CompaniesController extends Controller
     public function actionCreate()
     {
         $model = new Companies();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post())) {
-                //get the instance of uploaded file
-                $imageName = $model->company_name;
-                $model->file=UploadedFile::getInstance($model,'file');
-                $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension );
-                $model->logo='uploads/'.$imageName.'.'.$model->file->extension;
-                $model->company_created_data=date('Y-m-d h:m:s');
-                $model->save();
-                return $this->redirect(['view', 'company_id' => $model->company_id]);
+        $branch= new Branches();
+        if ($model->load(Yii::$app->request->post()) && $branch->load(Yii::$app->request->post())  && $model->save()) {
+            $branch->companies_company_id = $model->company_id;
+            $branch->save();
+            $imageName = $model->company_name;
+            if(!empty($model->file)){
+                $model->file = UploadedFile::getInstance($model, 'file');
+                $model->file->saveAs('uploads/' . $imageName . '.' . $model->file->extension);
+                $model->logo = 'uploads/' . $imageName . '.' . $model->file->extension;
             }
+            return $this->redirect(['view', 'company_id' => $model->company_id]);
         } else {
-            $model->loadDefaultValues();
+            return $this->render('create', array(
+                'model' => $model,
+                'branch'=>$branch,
+            ));
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**

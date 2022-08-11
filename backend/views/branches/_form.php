@@ -12,11 +12,10 @@ use kartik\select2\Select2;
 ?>
 
 <div class="branches-form">
-
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'companies_company_id')->dropDownList(
         ArrayHelper::map(Companies::find()->all(),'company_id','company_name'),
-        ['prompt'=>'Select Company']
+    ['prompt'=>'Select Company']
     ) ?>
     <?php $form->field($model, 'companies_company_id')->widget(Select2::classname(), [
         'data' =>  ArrayHelper::map(Companies::find()->all(),'company_id','company_name'),

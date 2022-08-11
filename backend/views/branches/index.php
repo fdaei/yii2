@@ -25,15 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?php
     Modal::begin([
-            'header'=>'<h4>branches</h4>',
+            'header'=>'<h4>yrryueuejjjwjwjjs</h4>',
         'id'=>'modal',
         'size'=>'modal-lg',
     ]);
     echo "<div id='modalContent'></div>";
     Modal::end();
     ?>
-    ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
