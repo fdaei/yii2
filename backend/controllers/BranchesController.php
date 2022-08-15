@@ -37,7 +37,7 @@ class BranchesController extends Controller
      * @return string
      */
     public function actionIndex()
-    {
+    {;
         $searchModel = new BranchesSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -69,7 +69,10 @@ class BranchesController extends Controller
     {
         $model = new Branches();
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                print_r($model->branch_created_date);
+//                $model->branch_created_date=date_create($model->branch_created_date);
+                $model->save();
                 return $this->redirect(['view', 'branch_id' => $model->branch_id]);
             }
         } else {

@@ -61,7 +61,6 @@ class BranchesSearch extends Branches
             'branch_id' => $this->branch_id,
             'branch_created_date' => $this->branch_created_date,
         ]);
-
         $query->andFilterWhere(['like', 'branch_name', $this->branch_name])
             ->andFilterWhere(['like', 'branch_address', $this->branch_address])
             ->andFilterWhere(['like', 'branch_status', $this->branch_status])

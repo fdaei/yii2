@@ -40,6 +40,7 @@ class PoItemSearch extends PoItem
      */
     public function search($params)
     {
+        echo "test";
         $query = PoItem::find();
 
         // add conditions that should always apply here
@@ -47,14 +48,13 @@ class PoItemSearch extends PoItem
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+//        $this->load($params);
 
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
+//        if (!$this->validate()) {
+//            // uncomment the following line if you do not want to return any records when validation fails
+//            // $query->where('0=1');
+//            return $dataProvider;
+//        }
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -62,7 +62,6 @@ class PoItemSearch extends PoItem
             'quantity' => $this->quantity,
             'po_id' => $this->po_id,
         ]);
-
         $query->andFilterWhere(['like', 'po_item_no', $this->po_item_no]);
 
         return $dataProvider;

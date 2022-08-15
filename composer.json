@@ -22,8 +22,10 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "yii2mod/yii2-rbac": "*",
         "wbraganca/yii2-dynamicform": "*",
-        "kartik-v/yii2-grid": "@dev"
-
+        "kartik-v/yii2-grid": "*",
+        "philippfrenzel/yii2fullcalendar":" 3.7.1.0.",
+        "almasaeed2010/adminlte": "~3.2",
+        "mdmsoft/yii2-admin": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

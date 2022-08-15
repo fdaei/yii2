@@ -44,6 +44,7 @@ class CompaniesController extends Controller
      */
     public function actionIndex()
     {
+//        $this->layout = 'loginLayout';
         $searchModel = new CompaniesSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 

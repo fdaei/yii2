@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     echo "<div id='modalContent'></div>";
     Modal::end();
     ?>
-    <?php Pjax::begin(); ?>
+    <?php Pjax::begin([ 'timeout' => false]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

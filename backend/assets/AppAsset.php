@@ -12,6 +12,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/tempusdominus-bootstrap-4.min.css',
+        'css/bootstrap.min.css',
         'css/site.css',
     ];
     public $js = [
