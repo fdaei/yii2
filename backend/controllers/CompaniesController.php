@@ -9,6 +9,7 @@ use Yii;
 use yii\helpers\Console;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
@@ -74,23 +75,28 @@ class CompaniesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Companies();
-        $branch= new Branches();
-        if ($model->load(Yii::$app->request->post()) && $branch->load(Yii::$app->request->post())  && $model->save()) {
-            $branch->companies_company_id = $model->company_id;
-            $branch->save();
-            $imageName = $model->company_name;
-            if(!empty($model->file)){
-                $model->file = UploadedFile::getInstance($model, 'file');
-                $model->file->saveAs('uploads/' . $imageName . '.' . $model->file->extension);
-                $model->logo = 'uploads/' . $imageName . '.' . $model->file->extension;
+        if(Yii::$app->user->can( 'create_company'))
+        {
+            $model = new Companies();
+            $branch= new Branches();
+            if ($model->load(Yii::$app->request->post()) && $branch->load(Yii::$app->request->post())  && $model->save()) {
+                $branch->companies_company_id = $model->company_id;
+                $branch->save();
+                $imageName = $model->company_name;
+                if(!empty($model->file)){
+                    $model->file = UploadedFile::getInstance($model, 'file');
+                    $model->file->saveAs('uploads/' . $imageName . '.' . $model->file->extension);
+                    $model->logo = 'uploads/' . $imageName . '.' . $model->file->extension;
+                }
+                return $this->redirect(['view', 'company_id' => $model->company_id]);
+            } else {
+                return $this->render('create', array(
+                    'model' => $model,
+                    'branch'=>$branch,
+                ));
             }
-            return $this->redirect(['view', 'company_id' => $model->company_id]);
-        } else {
-            return $this->render('create', array(
-                'model' => $model,
-                'branch'=>$branch,
-            ));
+        }else{
+            throw new  ForbiddenHttpException;
         }
     }
 

@@ -17,6 +17,10 @@ return [
         ],
     ],
     'components' => [
+        'authManager'=> [
+                'class'=>'yii\rbac\DbManager',
+                'defaultRoles'=>['guest'],
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -25,11 +29,6 @@ return [
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
-//        'admin' => [
-//            'identityClass' => 'backend\models\Admin',
-//            'enableAutoLogin' => true,
-//            'identityCookie' => ['name' => '_identity-backend_admin', 'httpOnly' => true],
-//        ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-backend',
