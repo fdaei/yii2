@@ -29,7 +29,7 @@ class Locations extends \yii\db\ActiveRecord
     {
         return [
             [['zip_code', 'city', 'province'], 'required'],
-            [['zip_code'], 'string', 'max' => 200],
+            [['zip_code'], 'string', 'max' => 20],
             [['city', 'province'], 'string', 'max' => 100],
         ];
     }
