@@ -28,14 +28,14 @@ class m220816_094915_create_auth_item_table extends Migration
             'auth_item',
             'rule_name'
         );
-        $this->addForeignKey(
-            'fk-auth_item-rule_name',
-            'auth_item',
-            'rule_name',
-            'auth_rule',
-            'name',
-            'CASCADE'
-        );
+//        $this->addForeignKey(
+//            'fk-auth_item-rule_name',
+//            'auth_item',
+//            'rule_name',
+//            'auth_rule',
+//            'name',
+//            'CASCADE'
+//        );
 
     }
 

@@ -13,7 +13,7 @@ class m220815_192132_create_po_item_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%po_item}}', [
-            'id ' => $this->primaryKey(),
+            'id' => $this->primaryKey(),
             'po_item_no' => $this->string(),
             'quantity' => $this->float(),
             'po_id' => $this->integer(),

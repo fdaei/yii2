@@ -12,8 +12,8 @@ class m220815_192112_create_po_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%locations}}', [
-            'id ' => $this->primaryKey(),
+        $this->createTable('{{%po}}', [
+            'id' => $this->primaryKey(),
             'po_no' => $this->string(),
             'description' => $this->text(),
         ]);

@@ -23,20 +23,20 @@ class m220815_184217_create_branches_table extends Migration
         ]);
         // creates index for column `author_id`
         $this->createIndex(
-            'idx-companies-companies_company_id',
-            'companies',
+            'idx-branches-companies_company_id',
+            'branches',
             'companies_company_id'
         );
 
-        // add foreign key for table `user`
-        $this->addForeignKey(
-            'fk-companies-companies_company_id',
-            'branches',
-            'companies_company_id',
-            'companies',
-            'id',
-            'CASCADE'
-        );
+//        // add foreign key for table `user`
+//        $this->addForeignKey(
+//            'fk-companies-companies_company_id',
+//            'branches',
+//            'companies_company_id',
+//            'companies',
+//            'id',
+//            'CASCADE'
+//        );
     }
 
     /**

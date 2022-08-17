@@ -23,14 +23,14 @@ class m220816_094900_create_auth_assignment_table extends Migration
             'auth_assignment',
             'item_name'
         );
-        $this->addForeignKey(
-            'fk-auth_assignment-item_name',
-            'auth_assignment',
-            'item_name',
-            'auth_item',
-            'name',
-            'CASCADE'
-        );
+//        $this->addForeignKey(
+//            'fk-auth_assignment-item_name',
+//            'auth_assignment',
+//            'item_name',
+//            'auth_item',
+//            'name',
+//            'CASCADE'
+//        );
     }
 
     /**

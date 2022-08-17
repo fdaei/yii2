@@ -29,24 +29,24 @@ class m220816_094939_create_auth_item_child_table extends Migration
             'parent'
         );
         // add foreign key for table `tag`
-        $this->addForeignKey(
-            'fk-auth_item_child-child',
-            'auth_item_child',
-            'child',
-            'auth_item',
-            'name',
-            'CASCADE'
-        );
-        // add foreign key for table `tag`
-        // add foreign key for table `tag`
-        $this->addForeignKey(
-            'fk-auth_item_child-parent',
-            'auth_item_child',
-            'parent',
-            'auth_item',
-            'name',
-            'CASCADE'
-        );
+//        $this->addForeignKey(
+//            'fk-auth_item_child-child',
+//            'auth_item_child',
+//            'child',
+//            'auth_item',
+//            'name',
+//            'CASCADE'
+//        );
+//        // add foreign key for table `tag`
+//        // add foreign key for table `tag`
+//        $this->addForeignKey(
+//            'fk-auth_item_child-parent',
+//            'auth_item_child',
+//            'parent',
+//            'auth_item',
+//            'name',
+//            'CASCADE'
+//        );
     }
 
     /**
