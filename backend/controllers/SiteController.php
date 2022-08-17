@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\LoginForm;
+use common\widgets\Alert;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -14,6 +15,19 @@ use yii\web\Response;
  */
 class SiteController extends Controller
 {
+    public function  actionLanguage(){
+        if(isset($_POST['lang'])){
+            Yii::$app->language=$_POST['lang'];
+            $cookie= new yii\web\Cookie(
+              [
+                  'name'=>'lang',
+                  'value'=>$_POST['lang']
+              ]
+            );
+            Yii::$app->getResponse()->getCookies()->add($cookie);
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -29,6 +43,10 @@ class SiteController extends Controller
                     ],
                     [
                         'actions' => ['logout', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -91,7 +109,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
     /**
      * Logout action.
      *

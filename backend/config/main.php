@@ -17,12 +17,28 @@ return [
         ],
     ],
     'components' => [
+        'as beforeRequest'=>[
+            'class'=>'backend\components\CheckIfLoggedIn',
+        ],
         'authManager'=> [
                 'class'=>'yii\rbac\DbManager',
                 'defaultRoles'=>['guest'],
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
+        ],
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'basepath' => @app/messages,
+                    'sourceLanguage' => 'en',
+                    'fileMap' => [
+                        'app' => 'app.php',
+                        'app/error' => 'error.php',
+                    ],
+                ],
+            ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',

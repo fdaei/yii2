@@ -6,6 +6,7 @@ use backend\models\Branches;
 use backend\models\Companies;
 use backend\models\CompaniesSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\helpers\Console;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
@@ -32,6 +33,7 @@ class CompaniesController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
+                        'roles' => ['create_branch'],
                     ],
                 ],
             ]
@@ -79,7 +81,9 @@ class CompaniesController extends Controller
         {
             $model = new Companies();
             $branch= new Branches();
-            if ($model->load(Yii::$app->request->post()) && $branch->load(Yii::$app->request->post())  && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) && $branch->load(Yii::$app->request->post())) {
+                $model->scenario = 'create';
+                $model->save();
                 $branch->companies_company_id = $model->company_id;
                 $branch->save();
                 $imageName = $model->company_name;

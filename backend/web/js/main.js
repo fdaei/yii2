@@ -1,5 +1,9 @@
 $( function () {
     "use strict";
+    $(document).on('click','.language', function(){
+        var lang = $(this).attr('id');
+        $.post('index.php?r=site%2Flanguage', {'lang':lang});
+    });
     $(document).on('click','.fc-day',function(){
         var date = $(this).attr('data-date');
         $.get('/index.php?r=events%2Fcreate',{'date':date},function(data){
