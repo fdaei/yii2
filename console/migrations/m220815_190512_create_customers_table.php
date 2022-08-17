@@ -25,16 +25,6 @@ class m220815_190512_create_customers_table extends Migration
             'customers',
             'zip_code'
         );
-
-        // add foreign key for table `user`
-//        $this->addForeignKey(
-//            'fk-customers-zip_code',
-//            'customers',
-//            'zip_code',
-//            'locations',
-//            'zip_code',
-//            'CASCADE'
-//        );
     }
 
     /**

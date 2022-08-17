@@ -29,14 +29,7 @@ class m220815_184217_create_branches_table extends Migration
         );
 
 //        // add foreign key for table `user`
-//        $this->addForeignKey(
-//            'fk-companies-companies_company_id',
-//            'branches',
-//            'companies_company_id',
-//            'companies',
-//            'id',
-//            'CASCADE'
-//        );
+
     }
 
     /**

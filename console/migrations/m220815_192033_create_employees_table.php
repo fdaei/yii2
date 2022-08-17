@@ -27,14 +27,7 @@ class m220815_192033_create_employees_table extends Migration
         );
 
         // add foreign key for table `user`
-//        $this->addForeignKey(
-//            'fk-employees-departments_department_id',
-//            'employees',
-//            'departments_department_id',
-//            'departments',
-//            'id',
-//            'CASCADE'
-//        );
+
 
     }
 
