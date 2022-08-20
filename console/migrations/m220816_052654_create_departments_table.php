@@ -27,19 +27,11 @@ class m220816_052654_create_departments_table extends Migration
             'branches_branch_id'
         );
 
-        // add foreign key for table `user`
-
-
-        // creates index for column `author_id`
         $this->createIndex(
             'idx-departments-department_company_id',
             'departments',
             'department_company_id'
         );
-
-        // add foreign key for table `user`
-
-
     }
 
     /**

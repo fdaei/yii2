@@ -19,14 +19,12 @@ class m220815_192033_create_employees_table extends Migration
             'employee_address' => $this->string(),
             'departments_department_id' => $this->integer(),
         ]);
-        // creates index for column `author_id`
         $this->createIndex(
             'idx-employees-departments_department_id',
             'employees',
             'departments_department_id'
         );
 
-        // add foreign key for table `user`
 
 
     }

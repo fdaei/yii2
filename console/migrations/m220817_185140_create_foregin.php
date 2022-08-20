@@ -12,37 +12,41 @@ class m220817_185140_create_foregin extends Migration
      */
     public function safeUp()
     {
-//        $this->addForeignKey(
-//            'fk-branches-companies_company_id',
-//            'branches',
-//            'companies_company_id',
-//            'companies',
-//            'company_id',
-//            'CASCADE'
-//        );
+        $this->addForeignKey(
+            'fk-branches-companies_company_id',
+            'branches',
+            'companies_company_id',
+            'companies',
+            'company_id',
+            'CASCADE',
+            'CASCADE'
+
+        );
         // add foreign key for table `user`
-//        $this->addForeignKey(
-//            'fk-customers-zip_code',
-//            'customers',
-//            'zip_code',
-//            'locations',
-//            'zip_code',
-//            'CASCADE'
-//        );
-//        $this->addForeignKey(
-//            'fk-employees-departments_department_id',
-//            'employees',
-//            'departments_department_id',
-//            'departments',
-//            'id',
-//            'CASCADE'
-//        );
+        $this->addForeignKey(
+            'fk-customers-zip_code',
+            'customers',
+            'zip_code',
+            'locations',
+            'zip_code',
+            'CASCADE',
+            'CASCADE'
+        );
+        $this->addForeignKey(
+            'fk-employees-departments_department_id',
+            'employees',
+            'departments_department_id',
+            'departments',
+            'department_id',
+            'CASCADE'
+        );
         $this->addForeignKey(
             'fk-departments-branches_branch_id',
             'departments',
             'branches_branch_id',
             'branches',
             'branch_id',
+            'CASCADE',
             'CASCADE'
         );
         $this->addForeignKey(
@@ -51,6 +55,7 @@ class m220817_185140_create_foregin extends Migration
             'department_company_id',
             'companies',
             'company_id',
+            'CASCADE',
             'CASCADE'
         );
         $this->addForeignKey(
@@ -59,6 +64,7 @@ class m220817_185140_create_foregin extends Migration
             'rule_name',
             'auth_rule',
             'name',
+            'CASCADE',
             'CASCADE'
         );
 //         add foreign key for table `tag`
@@ -68,6 +74,7 @@ class m220817_185140_create_foregin extends Migration
             'child',
             'auth_item',
             'name',
+            'CASCADE',
             'CASCADE'
         );
         // add foreign key for table `tag`
@@ -77,6 +84,7 @@ class m220817_185140_create_foregin extends Migration
             'parent',
             'auth_item',
             'name',
+            'CASCADE',
             'CASCADE'
         );
     }
