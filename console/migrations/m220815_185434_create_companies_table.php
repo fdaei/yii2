@@ -18,7 +18,7 @@ class m220815_185434_create_companies_table extends Migration
             'company_email' => $this->string(),
             'company_address' => $this->string(),
             'company_created_data' => $this->date(),
-            'company_status' => $this->tinyInteger(),
+            'company_status' => "ENUM('active', 'inactive')",
             'logo'=>$this->text(),
         ]);
     }

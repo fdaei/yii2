@@ -19,6 +19,9 @@ use Yii;
  */
 class Companies extends \yii\db\ActiveRecord
 {
+
+    const SCENARIOCREATE = 'scenariocreate';
+    const SCENARIOUPDATE = 'scenarioupdate';
     public $file;
     /**
      * {@inheritdoc}
@@ -28,17 +31,41 @@ class Companies extends \yii\db\ActiveRecord
         return 'companies';
     }
 
+    // scenarios encapsulated
+    public function getCompaniesScenarios()
+    {
+        return [
+            self::SCENARIOCREATE      =>  [ 'company_name', 'company_email', 'company_address','company_created_data','company_status','logo'],
+            self::SCENARIOUPDATE      =>  [ 'company_name', 'company_email', 'company_address','company_status'],
+        ];
+    }
+    public function scenarios()
+    {
+        $scenarios = $this->getCompaniesScenarios();
+        return $scenarios;
+    }
+    public function ModifyRequired()
+    {
+
+        $allscenarios = $this->getCompaniesScenarios();
+        // published not required
+        $allscenarios[self::SCENARIOCREATE] = array_diff($allscenarios[self::SCENARIOCREATE], ['logo']);
+        return $allscenarios;
+
+    }
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
+        $allscenarios = $this->ModifyRequired();
         return [
-            [[ 'company_email', 'company_address', 'company_created_data', 'company_status'], 'required'],
-            ['company_name','required','on'=> 'create'],
+            [$allscenarios[self::SCENARIOCREATE], 'required', 'on' => self::SCENARIOCREATE],
+            [$allscenarios[self::SCENARIOUPDATE], 'required', 'on' => self::SCENARIOUPDATE],
             [['company_created_data'], 'safe'],
             ['company_created_data','check'],
-            [['company_status'], 'string'],
+            ['company_status','string'],
             [['file'],'image','minWidth'=>'1024','minHeight'=>'1024'],
             [['company_name','logo','company_email'], 'string', 'max' => 100],
             [['company_address'], 'string', 'max' => 255],

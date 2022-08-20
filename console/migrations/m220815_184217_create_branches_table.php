@@ -17,7 +17,7 @@ class m220815_184217_create_branches_table extends Migration
             'branch_name' => $this->string(),
             'branch_address' => $this->string(),
             'branch_created_date' => $this->dateTime(),
-            'branch_status' => $this->tinyInteger(),
+            'branch_status' =>"ENUM('active', 'inactive')",
             'companies_company_id' => $this->integer(),
 
         ]);

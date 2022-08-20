@@ -18,7 +18,7 @@ class m220816_052654_create_departments_table extends Migration
             'department_name' => $this->string(),
             'department_company_id' => $this->integer(),
             'department_created_date' => $this->dateTime(),
-            'department_status' => $this->tinyInteger(),
+            'department_status' => "ENUM('active', 'inactive')",
         ]);
         // creates index for column `author_id`
         $this->createIndex(

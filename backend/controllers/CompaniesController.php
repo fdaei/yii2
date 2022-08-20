@@ -33,7 +33,7 @@ class CompaniesController extends Controller
                     'class' => VerbFilter::className(),
                     'actions' => [
                         'delete' => ['POST'],
-                        'roles' => ['create_branch'],
+//                        'roles' => ['create_branch'],
                     ],
                 ],
             ]
@@ -77,13 +77,13 @@ class CompaniesController extends Controller
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can( 'create_company'))
-        {
+//        if(Yii::$app->user->can( 'create_company'))
+//        {
             $model = new Companies();
+            $model->scenario = 'scenariocreate';
             $branch= new Branches();
             if ($model->load(Yii::$app->request->post()) && $branch->load(Yii::$app->request->post())) {
-                $model->scenario = 'create';
-                $model->save();
+                $model->save(false);
                 $branch->companies_company_id = $model->company_id;
                 $branch->save();
                 $imageName = $model->company_name;
@@ -99,9 +99,9 @@ class CompaniesController extends Controller
                     'branch'=>$branch,
                 ));
             }
-        }else{
-            throw new  ForbiddenHttpException;
-        }
+//        }else{
+//            throw new  ForbiddenHttpException;
+//        }
     }
 
     /**
@@ -114,6 +114,7 @@ class CompaniesController extends Controller
     public function actionUpdate($company_id)
     {
         $model = $this->findModel($company_id);
+        $model->scenario = 'scenarioupdate';
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'company_id' => $model->company_id]);
