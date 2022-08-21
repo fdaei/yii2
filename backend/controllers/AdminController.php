@@ -55,13 +55,15 @@ class AdminController extends Controller
      */
     public function actionIndex()
     {
+        $admin=Yii::$app->db2->createAdmin("SELECT * from `admin`")->queryAll();
+        print_r($admin);
         $searchModel = new AdminSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+//        $dataProvider = $searchModel->search($this->request->queryParams);
+//
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
     }
 
     /**

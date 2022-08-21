@@ -1,8 +1,8 @@
 <?php
 namespace  backend\components;
 use Yii;
-use yii\base\Component;
-class  CheckIfLoggedIn extends Component
+use yii\base\Behavior;
+class  CheckIfLoggedIn extends Behavior
 {
     public function events(){
         return[
@@ -10,8 +10,8 @@ class  CheckIfLoggedIn extends Component
         ];
     }
     public  function changeLanguage(){
-        if (Yii::$app->getRequest()->getCookies()->has('lang')){
-            Yii::$app->language=Yii::$app->getRequest()->getCookies()->getValue('lang');
+        if (\Yii::$app->getRequest()->getCookies()->has('lang')){
+            \Yii::$app->language=\Yii::$app->getRequest()->getCookies()->getValue('lang');
         }
     }
 }

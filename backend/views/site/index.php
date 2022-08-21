@@ -10,7 +10,7 @@ $this->title = 'My Yii Application';
         <h1 class="display-4">Congratulations!</h1>
 
         <p class="lead">
-            <?= Yii::t('app','Welcome') ?>
+            <?= Yii::t('app','Welcome') ?> tooo yii2
         </p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
