@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 /** @var yii\bootstrap4\ActiveForm $form */
 /** @var \frontend\models\SignupForm $model */
+/** @var \backend\models\AuthItem $authItems */
 
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
@@ -23,8 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'first_name')->textInput(['autofocus' => true]) ?>
                 <?= $form->field($model, 'last_name')->textInput(['autofocus' => true]) ?>
                 <?= $form->field($model, 'email') ?>
-
                 <?= $form->field($model, 'password')->passwordInput() ?>
+                <?php
+                 $authItems= \yii\helpers\ArrayHelper::map($authItems,'name','name')
+                ?>
+                <?= $form->field($model,'permissions')->checkboxList($authItems);?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

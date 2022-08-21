@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\models\Branches;
 use backend\models\BranchesSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -23,11 +24,36 @@ class BranchesController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['index'],
+                            'roles' => ['@'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['delete'],
+                            'roles' => ['deleteBranch'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['view'],
+                            'roles' => ['@'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['update'],
+                            'roles' => ['updateBranch'],
+                        ],
+                        [
+                            'allow' => true,
+                            'actions' => ['create'],
+                            'roles' => ['createBranch'],
+                        ],
                     ],
+
                 ],
             ]
         );
@@ -69,7 +95,6 @@ class BranchesController extends Controller
      */
     public function actionCreate()
     {
-        if(Yii::$app->user->can('create_branch')){
             $model = new Branches();
             if ($this->request->isPost) {
                 if ($model->load($this->request->post())) {
@@ -85,9 +110,6 @@ class BranchesController extends Controller
             return $this->renderAjax('create', [
                 'model' => $model,
             ]);
-        }else{
-            throw new  ForbiddenHttpException;
-        }
     }
 
     /**
@@ -99,15 +121,16 @@ class BranchesController extends Controller
      */
     public function actionUpdate($branch_id)
     {
-        $model = $this->findModel($branch_id);
+        {$model = $this->findModel($branch_id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'branch_id' => $model->branch_id]);
+            if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'branch_id' => $model->branch_id]);
+            }
+
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -119,9 +142,8 @@ class BranchesController extends Controller
      */
     public function actionDelete($branch_id)
     {
-        $this->findModel($branch_id)->delete();
-
-        return $this->redirect(['index']);
+            $this->findModel($branch_id)->delete();
+            return $this->redirect(['index']);
     }
 
     /**

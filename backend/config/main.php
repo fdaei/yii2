@@ -22,7 +22,6 @@ return [
         ],
         'authManager'=> [
                 'class'=>'yii\rbac\DbManager',
-                'defaultRoles'=>['guest'],
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',

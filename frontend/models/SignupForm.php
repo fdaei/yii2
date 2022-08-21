@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use backend\models\AuthAssignment;
 use Yii;
 use yii\base\Model;
 use common\models\User;
@@ -16,6 +17,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $permissions;
 
 
     /**
@@ -24,20 +26,13 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['first_name', 'required'],
-            ['last_name', 'required'],
-            ['username', 'trim'],
-            ['username', 'required'],
+            [['first_name','last_name','username','email','permissions','password'], 'required'],
+            [['username','email'], 'trim'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
-
-            ['email', 'trim'],
-            ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-
-            ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
         ];
     }
@@ -61,8 +56,17 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-
-        return $user->save() && $this->sendEmail($user);
+        $user->save(false);
+        $this->sendEmail($user);
+        // add permission
+        $listpermission= $_POST['SignupForm']['permissions'];
+        foreach ($listpermission as $value){
+            $newpermission = new AuthAssignment;
+            $newpermission->user_id = $user->id;
+            $newpermission->item_name = $value;
+            $newpermission->save();
+            print_r($newpermission->getErrors());
+        }
     }
 
     /**
