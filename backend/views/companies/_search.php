@@ -17,6 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'globalSearch') ?>
 
+
+    <?= $form->field($model, 'test',['inputOptions' => ['id' => 'globalSearch']]) ?>
+    <button id="suggtion">suggtion</button>
     <?php // echo $form->field($model, 'company_status') ?>
 
     <div class="form-group">

@@ -21,4 +21,10 @@ $( function () {
             .find('#modalContent')
             .load($(this).attr('value'));
     });
+    $(document).on('click','#suggtion', function(){
+        var data = $("#globalSearch").val();
+        // $.get('/index.php?r=companies%2Fsuggestion',{'data':data},function(data){});
+
+        console.log( $.get('/index.php?r=companies%2Fsuggestion',{'data':data}));
+    });
 });

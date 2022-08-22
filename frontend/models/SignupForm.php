@@ -26,7 +26,7 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['first_name','last_name','username','email','permissions','password'], 'required'],
+            [['first_name','last_name','username','email','password'], 'required'],
             [['username','email'], 'trim'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
@@ -65,7 +65,6 @@ class SignupForm extends Model
             $newpermission->user_id = $user->id;
             $newpermission->item_name = $value;
             $newpermission->save();
-            print_r($newpermission->getErrors());
         }
     }
 

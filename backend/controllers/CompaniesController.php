@@ -45,6 +45,9 @@ class CompaniesController extends Controller
      *
      * @return string
      */
+    public function actionSuggestion($data){
+        echo "<h1 style='font-size: 300px'>js</h1>";
+    }
     public function actionIndex()
     {
 //        $this->layout = 'loginLayout';

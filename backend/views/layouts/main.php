@@ -28,14 +28,66 @@ AppAsset::register($this);
     <header>
         <?php
         NavBar::begin([
-            'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
             ],
         ]);
         $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Home', 'url' => ['/site/index']],
+            [ 'label' => 'Branchs',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=branches%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=branches%2Fcreate']
+                ],
+            ],
+            [ 'label' => 'Companies',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=companies%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=companies%2Fcreate']
+                ],
+            ],
+            [ 'label' => 'Departments',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=departments%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=departments%2Fcreate']
+                ],
+            ],
+            [ 'label' => 'Customers',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=customers%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=customers%2Fcreate']
+                ],
+            ],
+            [ 'label' => 'Emails',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=emails%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=emails%2Fcreate']
+                ],
+            ],
+            [ 'label' => 'Events',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=events%2Findex']
+                ],
+            ],
+            [ 'label' => 'Locations',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=locations%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=locations%2Fcreate']
+                ],
+            ],
+            [ 'label' => 'Po',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=po%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=po%2Fcreate']
+                ],
+            ],
+            [ 'label' => 'PoItem',
+                'items' => [
+                    ['label' => 'index', 'url' => 'index.php?r=po-item%2Findex'],
+                    ['label' => 'create', 'url' => 'index.php?r=po-item%2Fcreate']
+                ],
+            ],
         ];
         if (Yii::$app->user->isGuest) {
             $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
