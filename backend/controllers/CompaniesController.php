@@ -46,6 +46,15 @@ class CompaniesController extends Controller
      * @return string
      */
     public function actionSuggestion($data){
+        $rows = (new \yii\db\Query())
+            ->select(['company_name'])
+            ->from('companies')
+            ->andFilterWhere(['like', 'company_name', $data])
+            ->all();
+        foreach ($rows as $row){
+            echo($row['company_name']);
+            echo("<br/>");
+        }
 
     }
     public function actionIndex()

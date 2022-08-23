@@ -15,10 +15,14 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <input id="globalSearch">
-    <button id="suggtion">suggtion</button>
 
-    <?= $form->field($model, 'globalSearch') ?>
+    <?= $form->field($model, 'globalSearch',  [
+        'inputOptions' => [
+            'onkeyup' => "showResult(this.value)",
+        ],
+    ]) ?>
+    <h1>Suggestion :</h1>
+    <div id="livesearch" style="margin: 5px;padding: 10px"></div>
     <?php // echo $form->field($model, 'company_status') ?>
 
     <div class="form-group">
