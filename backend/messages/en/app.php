@@ -1,4 +1,4 @@
 <?php
 return[
-   'Welcome'=>"Welcome 2"
+   'Welcome'=>"Welcome (en)"
 ]?>

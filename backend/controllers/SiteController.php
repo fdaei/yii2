@@ -16,17 +16,16 @@ use yii\web\Response;
 class SiteController extends Controller
 {
     public function  actionLanguage(){
-        echo "test";
-//        if(isset($_POST['lang'])){
-//            Yii::$app->language=$_POST['lang'];
-//            $cookie= new yii\web\Cookie(
-//              [
-//                  'name'=>'lang',
-//                  'value'=>$_POST['lang']
-//              ]
-//            );
-//            Yii::$app->getResponse()->getCookies()->add($cookie);
-//        }
+        if(isset($_POST['lang'])){
+            Yii::$app->language=$_POST['lang'];
+            $cookie= new yii\web\Cookie(
+              [
+                  'name'=>'lang',
+                  'value'=>$_POST['lang']
+              ]
+            );
+            Yii::$app->getResponse()->getCookies()->add($cookie);
+        }
     }
 
     /**
@@ -81,8 +80,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-//        Yii::$app->mycomponent->hello();
-//        die();
         return $this->render('index');
     }
 

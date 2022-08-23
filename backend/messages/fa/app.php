@@ -1,4 +1,4 @@
 <?php
 return[
-   'Welcome'=>"حوش امدید "
+   'Welcome' => "حوش امدید "
 ]?>

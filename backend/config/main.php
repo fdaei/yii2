@@ -8,6 +8,9 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'on '.yii\web\Application::EVENT_BEFORE_REQUEST => [
+        'backend\components\CheckIfLoggedIn','changeLanguage'
+    ] ,
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -17,9 +20,12 @@ return [
         ],
     ],
     'components' => [
-        'as beforeRequest'=>[
-            'class'=>'backend\components\CheckIfLoggedIn',
-        ],
+//        'as beforeRequest'=>[
+//            'class'=>'backend\components\CheckIfLoggedIn',
+//        ],
+//        'on beforeRequest' =>[
+//            'class'=>'backend\components\CheckIfLoggedIn',
+//        ],
         'authManager'=> [
                 'class'=>'yii\rbac\DbManager',
         ],

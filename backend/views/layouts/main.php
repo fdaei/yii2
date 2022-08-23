@@ -114,13 +114,12 @@ AppAsset::register($this);
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
-            <form method="post" action="http://localhost:8080/index.php?r=site%2Flanguage" >
+
             <?php
             foreach(Yii::$app->params['languages'] as $key => $language){
                 echo '<span name="lang" class="language" id ="'.$key.'" value="fa">'.$language.' | </span>';
             }
             ?>
-            </form>
             <?= Alert::widget() ?>
             <?= $content ?>
         </div>
