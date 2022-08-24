@@ -20,12 +20,6 @@ return [
         ],
     ],
     'components' => [
-//        'as beforeRequest'=>[
-//            'class'=>'backend\components\CheckIfLoggedIn',
-//        ],
-//        'on beforeRequest' =>[
-//            'class'=>'backend\components\CheckIfLoggedIn',
-//        ],
         'authManager'=> [
                 'class'=>'yii\rbac\DbManager',
         ],

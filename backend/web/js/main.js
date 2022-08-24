@@ -16,6 +16,27 @@ function showResult(str) {
 }
 $( function () {
     "use strict";
+    $(document).on('click','#btnajax', function(){
+        var title=$('#titleNotes').val();
+        var description=$('#descriptionNotes').val();
+        $.ajax(
+            {
+                type:'POST',
+                url : 'index.php?r=notes%2Fajax',
+                data: {title : title,description:description},
+                success : function (data){
+                    alert(data);
+                }
+            }
+        )
+    });
+    $(document).on('click','#btnjavascript', function(){
+        var title=$('#titleNotes').val();
+        var description=$('#descriptionNotes').val();
+        $.post('index.php?r=notes%2Fajax',{'title':title,'description':description },function(data){
+            alert(data);
+        })
+    });
     $(document).on('click','.language', function(){
         var lang  = $(this).attr('id');
         $.post('index.php?r=site%2Flanguage', {'lang':lang},function (data) {

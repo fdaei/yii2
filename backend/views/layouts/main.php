@@ -88,6 +88,18 @@ AppAsset::register($this);
                     ['label' => 'create', 'url' => 'index.php?r=po-item%2Fcreate']
                 ],
             ],
+            [ 'label' => 'notes',
+                'items' => [
+                    ['label' => 'create', 'url' => 'index.php?r=notes%2Fcreate']
+                ],
+            ],
+
+//            [ 'label' => 'employees',
+//                'items' => [
+//                    ['label' => 'index', 'url' => 'index.php?r=settings%2Femployees%2Findex'],
+//                    ['label' => 'create', 'url' => 'index.php?r=settings%2Femployees%2Fcreate']
+//                ],
+//            ],
         ];
         if (Yii::$app->user->isGuest) {
             $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

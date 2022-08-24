@@ -17,8 +17,8 @@ class EmployeesSearch extends Employees
     public function rules()
     {
         return [
-            [['employee_id'], 'integer'],
-            [['employee_name', 'employee_email', 'employee_address', 'departments_department_id'], 'safe'],
+            [['employee_id', 'departments_department_id'], 'integer'],
+            [['employee_name', 'employee_email', 'employee_address'], 'safe'],
         ];
     }
 
@@ -55,16 +55,16 @@ class EmployeesSearch extends Employees
             // $query->where('0=1');
             return $dataProvider;
         }
-        $query->joinWith('departmentsDepartment');
+
         // grid filtering conditions
         $query->andFilterWhere([
-            'employee_id' => $this->employee_id
+            'employee_id' => $this->employee_id,
+            'departments_department_id' => $this->departments_department_id,
         ]);
 
         $query->andFilterWhere(['like', 'employee_name', $this->employee_name])
             ->andFilterWhere(['like', 'employee_email', $this->employee_email])
-            ->andFilterWhere(['like', 'employee_address', $this->employee_address])
-            ->andFilterWhere(['like', 'departments.department_name', $this->departments_department_id]);
+            ->andFilterWhere(['like', 'employee_address', $this->employee_address]);
 
         return $dataProvider;
     }

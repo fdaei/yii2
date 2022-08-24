@@ -2,16 +2,17 @@
 
 namespace backend\modules\settings\models;
 
-use Yii;
 use backend\models\Departments;
+use Yii;
+
 /**
  * This is the model class for table "employees".
  *
  * @property int $employee_id
- * @property string $employee_name
- * @property string $employee_email
- * @property string $employee_address
- * @property int $departments_department_id
+ * @property string|null $employee_name
+ * @property string|null $employee_email
+ * @property string|null $employee_address
+ * @property int|null $departments_department_id
  *
  * @property Departments $departmentsDepartment
  */
@@ -31,10 +32,8 @@ class Employees extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['employee_name', 'employee_email', 'employee_address', 'departments_department_id'], 'required'],
             [['departments_department_id'], 'integer'],
-            [['employee_name', 'employee_email'], 'string', 'max' => 100],
-            [['employee_address'], 'string', 'max' => 255],
+            [['employee_name', 'employee_email', 'employee_address'], 'string', 'max' => 255],
             [['departments_department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Departments::className(), 'targetAttribute' => ['departments_department_id' => 'department_id']],
         ];
     }
