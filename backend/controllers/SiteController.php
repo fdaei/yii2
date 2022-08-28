@@ -15,6 +15,27 @@ use yii\web\Response;
  */
 class SiteController extends Controller
 {
+    public function actionPoll(){
+        $this->layout = 'loginLayout';
+        $vote = $_REQUEST['vote'];
+
+//get content of textfile
+        $filename = "poll_result.txt";
+        $array = [7,2];
+
+//put content in array
+//        $array = explode("||", $content[0]);
+        $yes = $array[0];
+        $no = $array[1];
+
+        if ($vote == 0) {
+            $yes = $yes + 1;
+        }
+        if ($vote == 1) {
+            $no = $no + 1;
+        }
+        return $this->render('poll',array('no'=>$no,'yes'=>$yes));
+    }
     public function  actionLanguage(){
         if(isset($_POST['lang'])){
             Yii::$app->language=$_POST['lang'];

@@ -50,7 +50,7 @@ class BranchesController extends Controller
                         [
                             'allow' => true,
                             'actions' => ['create'],
-                            'roles' => ['createBranch'],
+                            'roles' => ['createBranch2'],
                         ],
                     ],
 

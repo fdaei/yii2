@@ -23,6 +23,8 @@ class Admin extends \yii\db\ActiveRecord implements yii\web\IdentityInterface
         return 'admin';
     }
 
+
+
     /**
      * {@inheritdoc}
      */
