@@ -32,11 +32,10 @@ class CompaniesController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'delete' => ['POST'],
-//                        'roles' => ['create_branch'],
+                        'delete' => ['POST']
                     ],
                 ],
-            ],
+            ]
         );
     }
 
@@ -88,8 +87,6 @@ class CompaniesController extends Controller
      */
     public function actionCreate()
     {
-//        if(Yii::$app->user->can( 'create_company'))
-//        {
             $model = new Companies();
             $model->scenario = 'scenariocreate';
             $branch= new Branches();
@@ -110,9 +107,6 @@ class CompaniesController extends Controller
                     'branch'=>$branch,
                 ));
             }
-//        }else{
-//            throw new  ForbiddenHttpException;
-//        }
     }
 
     /**

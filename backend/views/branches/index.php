@@ -8,6 +8,7 @@ use yii\grid\GridView;
 use backend\models\Branches;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
+use yii\web\HttpException;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\BranchesSearch */
@@ -21,16 +22,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::button('Create Branches', ['value'=>Url::to('index.php?r=branches%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
+        <?= Html::button('Create Branches',['value'=>Url::to('index.php?r=branches%2Fcreate'),'class' => 'btn btn-success','id'=>'modalButton']) ?>
     </p>
     <?php
-    Modal::begin([
-            'header'=>'<h4>yrryueuejjjwjwjjs</h4>',
-        'id'=>'modal',
-        'size'=>'modal-lg',
-    ]);
-    echo "<div id='modalContent'></div>";
-    Modal::end();
+    if(Yii::$app->user->can('createBranch')){
+        Modal::begin([
+            'header'=>'<h4>create</h4>',
+            'id'=>'modal',
+            'size'=>'modal-lg',
+        ]);
+        echo "<div id='modalContent'></div>";
+        Modal::end();
+    }
     ?>
     <?php Pjax::begin([ 'timeout' => false]); ?>
     <?= GridView::widget([

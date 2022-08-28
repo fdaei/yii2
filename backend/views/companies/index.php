@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'company_name',
@@ -37,15 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'company_created_data',
                 'value'=>'company_created_data',
                 'format'=>'raw',
-                'filter'=>DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'company_created_data',
-                    'template' => '{addon}{input}',
-                    'clientOptions' => [
-                        'autoclose' => true,
-                        'format' => 'yyyy-mm-dd'
-                    ]
-                ])
+//                'filter'=>DatePicker::widget([
+//                    'model' => $searchModel,
+//                    'attribute' => 'company_created_data',
+//                    'template' => '{addon}{input}',
+//                    'clientOptions' => [
+//                        'autoclose' => true,
+//                        'format' => 'yyyy-mm-dd'
+//                    ]
+//                ])
              ],
             [
                 'class' => ActionColumn::className(),
