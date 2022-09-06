@@ -46,6 +46,9 @@ class DepartmentsSearch extends Departments
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 4,
+            ],
         ]);
 
         $this->load($params);

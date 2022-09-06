@@ -24,7 +24,7 @@ class EmployeesController extends Controller
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
-                        'index' => ['GET'],
+                        'index' => ['POST'],
                     ],
                 ],
             ]

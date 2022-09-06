@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap4\LinkPager;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -27,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+          'pager' => [
+
+    			'class' => 'yii\bootstrap4\LinkPager',
+          ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [

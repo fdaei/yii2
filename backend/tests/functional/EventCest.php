@@ -1,18 +1,16 @@
 <?php
 namespace backend\tests\functional;
 use backend\tests\FunctionalTester;
-class LoginCest
+class EventCest
 {
     public function _before(FunctionalTester $I)
     {
+        $I->amOnPage(['events/create']);
+        $I->seeInDatabase('events',['title' => 'test']);
     }
 
     // tests
     public function tryToTest(FunctionalTester $I)
     {
-        $I->amOnPage('site/login');
-        $I->fillField('Username', 'admin');
-        $I->fillField('Password', '123456789');
-        $I->click('Login');
     }
 }
